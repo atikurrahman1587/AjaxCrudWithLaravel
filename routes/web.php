@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StoreController::class, 'index'])->name('/');
+
+Route::post('data-store', [StoreController::class, 'Store'])->name('store');
+Route::get('manage-customer', [StoreController::class, 'manage_customer'])->name('manage-customer');
+Route::post('customer-delete', [StoreController::class, 'customer_delete'])->name('customer-delete');
