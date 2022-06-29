@@ -55,7 +55,7 @@
                     tbody += '<td>'+value.city+'</td>'
                     tbody += '<td>'+value.state+'</td>'
                     tbody += '<td>'+value.zip+'</td>'
-                    tbody += '<td><button type="button" class="btn btn-info btn-sm mr-2" onclick="Delete('+value.id+');">Delete</button><button type="button" class="btn btn-primary btn-sm" onclick="Edit('+value.id+');">Edit</button></td>'
+                    tbody += '<td><button type="button" class="btn btn-primary btn-sm mr-2" onclick="Edit('+value.id+');">Edit</button><button type="button" class="btn btn-info btn-sm" onclick="Delete('+value.id+');">Delete</button></td>'
                     tbody += '</tr>'
                 });
                 $("#tbody").empty();

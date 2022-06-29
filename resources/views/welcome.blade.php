@@ -67,7 +67,7 @@
                         <td>{{ $item->city }}</td>
                         <td>{{ $item->state }}</td>
                         <td>{{ $item->zip }}</td>
-                        <td><button type="button" class="btn btn-info btn-sm mr-2" onclick="Delete({{ $item->id }});">Delete</button><button type="button" class="btn btn-primary btn-sm" onclick="Edit({{ $item->id }});">Edit</button></td>
+                        <td><button type="button" class="btn btn-primary btn-sm mr-2" onclick="Edit({{ $item->id }});">Edit</button><button type="button" class="btn btn-info btn-sm" onclick="Delete({{ $item->id }});">Delete</button></td>
                     </tr>
                 @endforeach
                 </tbody>
