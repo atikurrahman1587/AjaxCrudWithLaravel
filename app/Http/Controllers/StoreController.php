@@ -28,4 +28,15 @@ class StoreController extends Controller
         Customer::where('id',$request->id)->first()->delete();
         return response()->json('Customer info delete successful');
     }
+    public function edit(Request $request)
+    {
+        return response()->view('edit',[
+            'data' => Customer::where('id',$request->id)->first(),
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        return response()->json(Customer::updateCustomer($request));
+    }
 }

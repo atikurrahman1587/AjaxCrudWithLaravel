@@ -20,6 +20,17 @@ class Customer extends Model
             'zip'           => 'required',
         ]);
     }
+    public static function formValidationForUpdate($request)
+    {
+        $request->validate([
+            'name'          => 'required',
+            'email'         => 'required|email',
+            'addressOne'    => 'required',
+            'city'          => 'required',
+            'state'         => 'required',
+            'zip'           => 'required',
+        ]);
+    }
     public static function saveBasicInfo($customer, $request) {
         $customer->name            = $request->name;
         $customer->email           = $request->email;
@@ -35,5 +46,12 @@ class Customer extends Model
         self::formValidation($request);
         self::saveBasicInfo(new Customer(), $request);
         return 'Customer Create Successfully';
+    }
+
+    public static function updateCustomer($request)
+    {
+        self::formValidationForUpdate($request);
+        self::saveBasicInfo(Customer::find($request->id), $request);
+        return 'Customer Update Successfully';
     }
 }

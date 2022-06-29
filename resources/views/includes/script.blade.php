@@ -1,6 +1,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    function home(){
+        $.ajax({
+            url: "{{ route('/') }}",
+            method: "GET",
+            success:function (data) {
+                $("body").html(data);
+                read();
+            }
+        });
+    }
     $("#submit").click(function () {
         let name = $("#name").val();
         let email = $("#email").val();
@@ -70,6 +80,41 @@
     }
     function Edit(id)
     {
-        alert(id);
+        $.ajax({
+            url: "{{ route('edit') }}",
+            method: "GET",
+            data: {id:id},
+            success:function (data) {
+                console.log(data);
+                $("body").html(data);
+            }
+        });
+    }
+    function update(id)
+    {
+        let name = $("#name").val();
+        let email = $("#email").val();
+        let addressOne = $("#addressOne").val();
+        let addressTwo = $("#addressTwo").val();
+        let city = $("#city").val();
+        let state = $("#state").val();
+        let zip = $("#zip").val();
+        $.ajax({
+            type: "POST",
+            url: "{{ route('update') }}",
+            data:{id:id, name:name, email:email, addressOne:addressOne, addressTwo:addressTwo, city:city, state:state, zip:zip,  _token: '{{csrf_token()}}'},
+            dataType: 'json',
+            success: function(data){
+                read();
+                toastr.success(data);
+            },
+            error: function (err) {
+                if (err.status == 422) { // when status code is 422, it's a validation issue
+                    $.each(err.responseJSON.errors, function (key, value) {
+                        toastr.warning(value);
+                    });
+                }
+            }
+        });
     }
 </script>

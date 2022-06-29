@@ -19,3 +19,5 @@ Route::get('/', [StoreController::class, 'index'])->name('/');
 Route::post('data-store', [StoreController::class, 'Store'])->name('store');
 Route::get('manage-customer', [StoreController::class, 'manage_customer'])->name('manage-customer');
 Route::post('customer-delete', [StoreController::class, 'customer_delete'])->name('customer-delete');
+Route::get('edit', [StoreController::class, 'edit'])->name('edit');
+Route::post('update', [StoreController::class, 'update'])->name('update');
